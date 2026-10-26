@@ -68,28 +68,28 @@ const archiveItems = {
     src: "sample-assets/a01_t1final_p018.png",
     alt: "11类切割图案目录项目页",
     title: "11类切割图案目录",
-    source: "term1_final-pre.pdf · p18 · PDF整页导出",
-    english: "Eleven kerf-pattern families collected on one exported project page.",
+    source: "木板切缝形变试验",
+    english: "Eleven kerf-pattern families compared through deformation tests.",
   },
   bending: {
     src: "sample-assets/a02_t1final_p022.png",
     alt: "切割图案弯曲与扭转比较项目页",
     title: "弯曲、扭转与水平弯曲比较",
-    source: "term1_final-pre.pdf · p22 · PDF整页导出",
-    english: "A project-page comparison of vertical bending, twisting and horizontal bending.",
+    source: "弯曲、扭转与水平弯曲比较",
+    english: "A comparison of vertical bending, twisting and horizontal bending.",
   },
   legs: {
     src: "sample-assets/a03_t1final_p024.png",
     alt: "两支腿、三支腿和四支腿构型原型项目页",
     title: "2 / 3 / 4支腿构型原型",
-    source: "term1_final-pre.pdf · p24 · PDF整页导出",
+    source: "构型与支撑方式原型",
     english: "Physical configuration studies shown as two-, three- and four-leg units.",
   },
   evaluation: {
     src: "sample-assets/a04_t1final_p028.png",
     alt: "2支腿、3支腿和4支腿构型多维评价表项目页",
     title: "构型多维评价表",
-    source: "term1_final-pre.pdf · p28 · PDF整页导出",
+    source: "十一项构型对照",
     english: "An eleven-criterion comparison used to document a configuration decision.",
   },
 };
@@ -131,61 +131,65 @@ archiveTabs.forEach((tab, index) => {
 });
 
 const trailSequence = [
-  { src: "sample-assets/a01_t1final_p018.png", zh: "01 · 材料问题：切割图案", en: "Material question · kerf patterns" },
-  { src: "sample-assets/a02_t1final_p022.png", zh: "02 · 材料试验：弯曲与扭转", en: "Material test · bending and twisting" },
-  { src: "sample-assets/a04_t1final_p028.png", zh: "03 · 结构取舍：构型评价", en: "Structure decision · configuration evaluation" },
-  { src: "sample-assets/a06_t2final_p022.png", zh: "04 · 交互行为：Awake状态", en: "Responsive behaviour · Awake state" },
-  { src: "sample-assets/a07_t2final_p027.png", zh: "05 · 原型证据：竹构与网壳", en: "Prototype evidence · bamboo and gridshell" },
+  { src: "sample-assets/a03_t1final_p024.png", alt: "两支腿、三支腿与四支腿的早期构型原型", zh: "问题与目标", description: "早期构型原型将空间需求转化为可搭建的支撑问题。" },
+  { src: "sample-assets/a02_t1final_p022.png", alt: "切缝图案的弯曲与扭转比较", zh: "材料试验", description: "切缝图案比较材料在弯曲、扭转与水平弯曲中的形变差异。" },
+  { src: "sample-assets/a04_t1final_p028.png", alt: "两支腿、三支腿与四支腿构型评价表", zh: "结构取舍", description: "构型对照把支撑、稳定与空间关系放进同一组设计判断。" },
+  { src: "sample-assets/a08_t2final_p030.png", alt: "Unity三维交互界面与状态控制", zh: "交互行为", description: "数字界面组织视角、环境输入、行为状态与颜色配置。" },
+  { src: "sample-assets/a07_t2final_p027.png", alt: "竹构与网格壳体研究原型", zh: "原型证据", description: "竹构与网格壳体研究原型连接材料、构型和现场展示。" },
 ];
 const trailField = document.querySelector("#trail-field");
-let trailIndex = 0;
-let lastTrailPoint = null;
-let lastTrailTime = 0;
+const trailPreview = document.querySelector("#trail-preview");
+const trailImage = document.querySelector("#trail-image");
+const trailCaption = document.querySelector("#trail-caption");
+const trailDescription = document.querySelector("#trail-description");
+const trailButtons = [...document.querySelectorAll("[data-trail-stage]")];
+let activeTrailStage = 0;
 
-function addTrailCard(clientX, clientY) {
-  if (document.documentElement.dataset.motion === "off" && trailField.querySelector(".trail-card")) return;
+function selectTrailStage(index, focus = false) {
+  const nextIndex = Math.max(0, Math.min(trailSequence.length - 1, index));
+  if (nextIndex === activeTrailStage && trailPreview.dataset.ready === "true") return;
+  const item = trailSequence[nextIndex];
+  activeTrailStage = nextIndex;
+  trailPreview.classList.add("is-switching");
+  const update = () => {
+    trailImage.src = item.src;
+    trailImage.alt = item.alt;
+    trailCaption.textContent = item.zh;
+    trailDescription.textContent = item.description;
+    trailPreview.style.setProperty("--trail-left", `${(nextIndex + 0.5) * 20}%`);
+    trailPreview.dataset.ready = "true";
+    trailPreview.classList.remove("is-switching");
+    trailButtons.forEach((button, buttonIndex) => {
+      if (buttonIndex === nextIndex) button.setAttribute("aria-current", "step");
+      else button.removeAttribute("aria-current");
+    });
+    if (focus) trailButtons[nextIndex].focus();
+  };
+  if (document.documentElement.dataset.motion === "off") update();
+  else window.setTimeout(update, 90);
+}
+
+function trailIndexFromPointer(clientX) {
   const rect = trailField.getBoundingClientRect();
-  const item = trailSequence[trailIndex % trailSequence.length];
-  trailIndex += 1;
-  const card = document.createElement("figure");
-  card.className = "trail-card";
-  const x = Math.min(rect.width - 95, Math.max(95, clientX - rect.left));
-  const y = Math.min(rect.height - 75, Math.max(90, clientY - rect.top));
-  card.style.left = `${x}px`;
-  card.style.top = `${y}px`;
-  card.style.setProperty("--z", String(trailIndex));
-  card.innerHTML = `<img src="${item.src}" alt="" /><figcaption><strong>${item.zh}</strong><span lang="en">${item.en}</span><span>PDF整页导出 / full-page export</span></figcaption>`;
-  trailField.append(card);
-  const cards = [...trailField.querySelectorAll(".trail-card")];
-  if (cards.length > 5) {
-    cards[0].classList.add("is-leaving");
-    window.setTimeout(() => cards[0].remove(), 320);
-  }
+  const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+  return Math.max(0, Math.min(4, Math.ceil(ratio * 5) - 1));
 }
 
 trailField.addEventListener("pointermove", (event) => {
-  if (event.pointerType === "touch") {
-    if (!lastTrailPoint) lastTrailPoint = { x: event.clientX, y: event.clientY };
-    const distance = Math.hypot(event.clientX - lastTrailPoint.x, event.clientY - lastTrailPoint.y);
-    if (distance < 54) return;
-  } else {
-    const now = performance.now();
-    const distance = lastTrailPoint ? Math.hypot(event.clientX - lastTrailPoint.x, event.clientY - lastTrailPoint.y) : 999;
-    if (distance < 82 || now - lastTrailTime < 160) return;
-    lastTrailTime = now;
-  }
-  lastTrailPoint = { x: event.clientX, y: event.clientY };
-  addTrailCard(event.clientX, event.clientY);
+  if (event.pointerType !== "touch") selectTrailStage(trailIndexFromPointer(event.clientX));
 });
-trailField.addEventListener("pointerdown", (event) => {
-  if (event.pointerType === "touch") addTrailCard(event.clientX, event.clientY);
+trailField.addEventListener("pointerdown", (event) => selectTrailStage(trailIndexFromPointer(event.clientX)));
+trailButtons.forEach((button, index) => {
+  button.addEventListener("focus", () => selectTrailStage(index));
+  button.addEventListener("click", () => selectTrailStage(index));
+  button.addEventListener("keydown", (event) => {
+    if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+    event.preventDefault();
+    const direction = event.key === 'ArrowRight' ? 1 : -1;
+    selectTrailStage((index + direction + trailButtons.length) % trailButtons.length, true);
+  });
 });
-document.querySelector(".story-trail").addEventListener("keydown", (event) => {
-  if (event.key !== "Enter" && event.key !== " ") return;
-  event.preventDefault();
-  const rect = trailField.getBoundingClientRect();
-  addTrailCard(rect.left + rect.width / 2 + ((trailIndex % 3) - 1) * 80, rect.top + rect.height / 2);
-});
+selectTrailStage(0);
 
 function parseMeasurementCsv(text) {
   const lines = text.trim().split(/\r?\n/);
@@ -206,7 +210,7 @@ function renderState(state) {
     return;
   }
   parameterGrid.innerHTML = records.map((record) => `<div><span>${record.parameter}</span><strong>${record.value}<small>${record.unit}</small></strong></div>`).join("");
-  parameterSource.textContent = `来源：${records[0].source_document} · p${records[0].source_page}；原参数含义与测量日期待核。`;
+  parameterSource.textContent = `${state} 行为状态研究；原参数含义与测量日期待核。`;
 }
 
 fetch("data/measurements.csv", { cache: "no-store" })
@@ -223,46 +227,3 @@ fetch("data/measurements.csv", { cache: "no-store" })
   });
 
 stateTabs.forEach((tab) => tab.addEventListener("click", () => renderState(tab.dataset.state)));
-
-async function setupOptionalVideo() {
-  const figure = document.querySelector("#hero-media");
-  try {
-    const response = await fetch("/api/project-media", { cache: "no-store" });
-    if (!response.ok) return;
-    const media = await response.json();
-    if (!media.video_available || !media.video_url) return;
-    const source = media.video_url;
-    const frame = document.querySelector("#hero-media-frame");
-    const video = document.createElement("video");
-    video.src = source;
-    video.poster = "sample-assets/a07_t2final_p027.png";
-    video.muted = true;
-    video.loop = true;
-    video.autoplay = true;
-    video.playsInline = true;
-    video.preload = "metadata";
-    const control = document.createElement("button");
-    control.className = "video-control";
-    control.type = "button";
-    control.textContent = "暂停 / Pause";
-    control.addEventListener("click", () => {
-      if (video.paused) {
-        video.play().catch(() => {});
-        control.textContent = "暂停 / Pause";
-      } else {
-        video.pause();
-        control.textContent = "播放 / Play";
-      }
-    });
-    video.addEventListener("canplay", () => {
-      frame.append(video, control);
-      figure.classList.add("is-video");
-      figure.querySelector("figcaption").innerHTML = '<span>项目视频 · 静音循环播放，可手动暂停。</span><span lang="en">Project video · muted loop with a pause control.</span>';
-    }, { once: true });
-    video.load();
-  } catch {
-    // Missing optional media intentionally leaves the real project-page fallback in place.
-  }
-}
-
-setupOptionalVideo();

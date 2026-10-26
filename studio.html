@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="BAMOR Design Studio — 本地设计素材筛选、比较与人工审核工作台。" />
+    <title>BAMOR Design Studio · M1</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%233A230A'/%3E%3Cpath d='M18 14h18c9 0 14 4 14 12 0 5-3 8-7 10 6 1 9 5 9 11 0 9-6 13-16 13H18V14zm10 9v10h7c4 0 6-2 6-5s-2-5-6-5h-7zm0 18v10h8c4 0 6-2 6-5s-2-5-6-5h-8z' fill='%23ffffff'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#library">跳到素材库</a>
+
+    <header class="site-header">
+      <div class="workspace-brand">
+        <p class="eyebrow">BAMOR / DESIGN ASSET WORKBENCH</p>
+        <h1>BAMOR Design Studio</h1>
+        <p class="lede">整理项目素材，比较不同方案，留下选择依据。</p>
+      </div>
+      <nav class="view-switch" aria-label="BAMOR页面切换">
+        <a href="/">双入口首页 <span>Start</span></a>
+        <a href="project">项目展示 <span>Project story</span></a>
+        <a class="is-current" href="studio" aria-current="page">素材工作台 <span>Asset workbench</span></a>
+      </nav>
+      <div class="header-meta" aria-label="版本信息">
+        <span>M1 · 本地工作流</span>
+        <span>2026.10</span>
+      </div>
+    </header>
+
+    <nav class="workflow-nav" aria-label="工作台流程">
+      <a href="#asset-catalog"><span>01</span> 素材目录</a>
+      <a href="#ai-selector"><span>02</span> 用途筛选 / AI建议</a>
+      <a href="#review-actions"><span>03</span> 比较与人工取舍</a>
+      <a href="#export-actions"><span>04</span> 导出 / 备份</a>
+    </nav>
+
+    <main>
+      <section class="intro-panel" aria-labelledby="start-title">
+        <div>
+          <p class="section-kicker">从真实材料开始</p>
+          <h2 id="start-title">先从8份项目样例开始</h2>
+          <p>包含BAMOR的实验图、模型照片、结构图和界面页。导入后即可筛选、比较和记录你的判断。</p>
+        </div>
+        <div class="start-actions">
+          <button class="button button-primary" id="import-samples" type="button" disabled>
+            <span>导入8份BAMOR样例</span>
+            <small>重复导入不会增加副本</small>
+          </button>
+          <label class="button button-secondary upload-button" for="image-upload">
+            <span>上传真实图片</span>
+            <small>PNG / JPEG / WebP</small>
+          </label>
+          <input id="image-upload" class="visually-hidden" type="file" accept="image/png,image/jpeg,image/webp" multiple disabled />
+        </div>
+        <div class="storage-note">
+          <p>公开精选案例随版本发布；你的上传、评分与审核只保存在此设备。清理浏览器数据会丢失记录，请定期导出备份。</p>
+          <details>
+            <summary>保存说明</summary>
+            <p>图片与元数据通过稳定ID关联，保存在当前浏览器、当前站点的 IndexedDB 中，不会同步给设计者或其他访客。更换设备、浏览器、主机名或端口不会自动带走数据；CSV不含图片，JSON备份包含可恢复的元数据与图片。</p>
+          </details>
+          <div class="storage-status" id="storage-status" data-state="opening" role="status" aria-live="polite">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span id="storage-status-text">正在打开本地素材库…</span>
+            <button class="text-button" id="retry-storage" type="button" hidden>重试</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="toolbar" id="asset-catalog" aria-labelledby="filter-title">
+        <div class="toolbar-heading">
+          <div>
+            <p class="section-kicker">01 / 素材目录</p>
+            <h2 id="filter-title">按项目、阶段与内容类型整理</h2>
+          </div>
+          <p class="result-count" id="result-count" aria-live="polite">0份素材</p>
+        </div>
+
+        <div class="filters">
+          <label class="field search-field">
+            <span>搜索标题或标签</span>
+            <input id="search-input" type="search" placeholder="例如：竹构、原型、网壳" autocomplete="off" />
+          </label>
+          <label class="field">
+            <span>阶段</span>
+            <select id="stage-filter"><option value="">全部阶段</option></select>
+          </label>
+          <label class="field">
+            <span>项目 / 来源</span>
+            <select id="source-filter"><option value="">全部来源</option></select>
+          </label>
+          <label class="field">
+            <span>内容类型</span>
+            <select id="type-filter"><option value="">全部类型</option></select>
+          </label>
+          <label class="field">
+            <span>审核状态</span>
+            <select id="status-filter">
+              <option value="">全部状态</option>
+              <option value="unreviewed">待审核</option>
+              <option value="approved">通过</option>
+              <option value="rejected">淘汰</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>用途标签</span>
+            <select id="tag-filter"><option value="">全部用途标签</option></select>
+          </label>
+          <button class="text-button" id="clear-filters" type="button">清除筛选</button>
+        </div>
+
+        <div class="library-actions" id="review-actions">
+          <div class="action-group compare-actions">
+            <p class="action-label">03 / 比较与人工取舍</p>
+            <div class="compare-status" id="compare-status" aria-live="polite">选择2—4份素材进行并排比较</div>
+            <button class="button button-dark" id="open-compare" type="button" disabled>打开比较板</button>
+          </div>
+          <div class="action-group export-actions" id="export-actions">
+            <p class="action-label">04 / 导出与备份</p>
+            <button class="button button-quiet" id="export-csv" type="button" disabled>导出CSV</button>
+            <button class="button button-quiet" id="export-json" type="button" disabled>导出JSON备份</button>
+            <label class="button button-quiet restore-button" for="restore-json">恢复JSON</label>
+            <input id="restore-json" class="visually-hidden" type="file" accept="application/json,.json" disabled />
+            <button class="button button-quiet" id="restore-samples" type="button" disabled>恢复原始精选案例</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="library" class="asset-grid" aria-label="素材列表"></section>
+
+      <section id="empty-state" class="empty-state" hidden>
+        <p class="empty-mark">◇</p>
+        <h2 id="empty-title">还没有素材</h2>
+        <p id="empty-copy">先导入8份BAMOR样例，或上传一张真实图片。</p>
+        <button class="text-button" id="empty-clear" type="button" hidden>清除筛选</button>
+      </section>
+
+      <section class="ai-panel" id="ai-selector" aria-labelledby="ai-title">
+        <div class="ai-heading">
+          <div>
+            <p class="section-kicker">02 / 按用途筛选与AI建议</p>
+            <h2 id="ai-title">按自然语言需求进行AI选图</h2>
+            <p>先在素材目录中缩小候选范围，再让真实视觉模型读取实际图片，完成初筛、比较与解释。AI建议与人工确认分别保存，不会覆盖人工审核或把素材永久淘汰。</p>
+          </div>
+          <div class="model-status-group">
+            <div class="connection-status" id="ai-status" data-state="checking" aria-live="polite">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span>正在检查模型连接…</span>
+            </div>
+            <button class="text-button status-retry" id="retry-ai-status" type="button" hidden>重试模型检查</button>
+          </div>
+        </div>
+
+        <form id="ai-form" class="ai-form">
+          <label class="field ai-purpose-field">
+            <span>用途</span>
+            <input id="ai-purpose" required maxlength="240" placeholder="例如：选择作品集封面" />
+          </label>
+          <label class="field">
+            <span>需要几张</span>
+            <select id="ai-count">
+              <option value="1">1张</option>
+              <option value="2">2张</option>
+              <option value="3">3张</option>
+              <option value="4">4张</option>
+            </select>
+          </label>
+          <label class="field ai-wide-field">
+            <span>想突出什么</span>
+            <input id="ai-emphasis" required maxlength="400" placeholder="例如：结构辨识度、视觉冲击和完整项目气质" />
+          </label>
+          <label class="field ai-wide-field">
+            <span>必须满足什么条件</span>
+            <textarea id="ai-constraints" rows="3" maxlength="800" placeholder="例如：主体清楚，不依赖无法核实的重量或性能数据"></textarea>
+          </label>
+          <div class="ai-form-footer">
+            <p id="ai-candidate-summary">当前筛选范围：0份候选素材</p>
+            <div class="preset-actions" aria-label="测试任务快捷填写">
+              <button class="text-button" type="button" data-ai-preset="cover">填写“选择作品封面”</button>
+              <button class="text-button" type="button" data-ai-preset="gridshell">填写“解释网格壳体构型”</button>
+            </div>
+            <button class="button button-primary" id="run-ai-selection" type="submit" disabled>让AI读取候选图片</button>
+          </div>
+          <p class="ai-connection-help" id="ai-connection-help">正在读取服务端连接状态。</p>
+        </form>
+
+        <div class="ai-output" id="ai-output">
+          <div class="ai-empty">
+            <p class="empty-mark">✦</p>
+            <h3>AI建议会显示在这里</h3>
+            <p>每次结果独立保存，并等待人工确认。模型必须基于实际图片给出可见依据和不确定项。</p>
+          </div>
+        </div>
+
+        <details class="ai-history-panel">
+          <summary>已保存的AI选图任务 <span id="ai-task-count">0</span></summary>
+          <div id="ai-history" class="ai-history"><p>暂无已完成任务。</p></div>
+        </details>
+      </section>
+    </main>
+
+    <dialog id="editor-dialog" class="dialog editor-dialog">
+      <form id="editor-form" method="dialog">
+        <div class="dialog-header">
+          <div>
+            <p class="section-kicker">人工标注</p>
+            <h2>编辑素材记录</h2>
+          </div>
+          <button class="icon-button" type="button" data-close-dialog="editor-dialog" aria-label="关闭编辑窗口">×</button>
+        </div>
+        <div class="editor-layout">
+          <figure class="editor-preview"><img id="editor-image" alt="" /></figure>
+          <div class="editor-fields">
+            <input id="editor-id" type="hidden" />
+            <label class="field"><span>标题</span><input id="editor-title" required maxlength="120" /></label>
+            <div class="field-row">
+              <label class="field"><span>阶段</span><input id="editor-stage" maxlength="40" placeholder="例如 term2" /></label>
+              <label class="field"><span>材料</span><input id="editor-materials" maxlength="160" placeholder="用逗号分隔" /></label>
+            </div>
+            <label class="field"><span>标签</span><input id="editor-tags" maxlength="240" placeholder="用逗号分隔，例如 竹构, 原型" /></label>
+            <div class="field-row">
+              <label class="field">
+                <span>审核状态</span>
+                <select id="editor-status">
+                  <option value="unreviewed">待审核</option>
+                  <option value="approved">通过</option>
+                  <option value="rejected">淘汰</option>
+                </select>
+              </label>
+              <label class="field"><span>审核人（可选）</span><input id="editor-reviewer" maxlength="80" /></label>
+            </div>
+
+            <fieldset class="score-fieldset">
+              <legend>人工评分 <small>1—5分，未评价请留空</small></legend>
+              <div class="score-grid">
+                <label class="field"><span>构型一致性</span><select data-score="structure_consistency"></select></label>
+                <label class="field"><span>材料表达</span><select data-score="material_expression"></select></label>
+                <label class="field"><span>场景适配</span><select data-score="scene_fit"></select></label>
+                <label class="field"><span>视觉清晰度</span><select data-score="visual_clarity"></select></label>
+              </div>
+              <p>1 明显不满足 · 3 基本可用但需修改 · 5 满足要求且细节完整。页面样例评价的是页面表达，不是结构安全。</p>
+            </fieldset>
+
+            <fieldset class="reason-fieldset" id="rejection-fieldset">
+              <legend>淘汰原因 <small>可多选</small></legend>
+              <div id="rejection-reasons" class="check-grid"></div>
+            </fieldset>
+            <label class="field">
+              <span>取舍理由 / 备注</span>
+              <textarea id="editor-reason" rows="4" maxlength="1000" placeholder="记录具体观察，避免只写“好看”或“不好看”"></textarea>
+            </label>
+          </div>
+        </div>
+        <div class="dialog-footer">
+          <p id="editor-origin"></p>
+          <div>
+            <button class="button button-quiet" type="button" data-close-dialog="editor-dialog">取消</button>
+            <button class="button button-primary" type="submit" value="save">保存记录</button>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="compare-dialog" class="dialog compare-dialog">
+      <div class="dialog-header">
+        <div>
+          <p class="section-kicker">2—4项并排</p>
+          <h2>比较板</h2>
+        </div>
+        <button class="icon-button" type="button" data-close-dialog="compare-dialog" aria-label="关闭比较板">×</button>
+      </div>
+      <div id="compare-grid" class="compare-grid"></div>
+      <div class="dialog-footer">
+        <p>比较板只用于当前工作会话；素材和标注仍保存在本地素材库中。</p>
+        <button class="button button-dark" type="button" data-close-dialog="compare-dialog">返回素材库</button>
+      </div>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>

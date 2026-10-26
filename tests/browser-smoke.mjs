@@ -2,6 +2,7 @@ import { mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
 const baseUrl = process.env.BAMOR_TEST_URL || "http://127.0.0.1:4173";
+const studioUrl = `${baseUrl.replace(/\/$/, "")}/studio`;
 const debuggerUrl = process.env.BAMOR_DEBUG_URL || "http://127.0.0.1:9223";
 const downloadPath = resolve("tests", "downloads");
 await mkdir(downloadPath, { recursive: true });
@@ -64,7 +65,7 @@ await command("Page.enable");
 await command("Log.enable");
 await command("Emulation.setDeviceMetricsOverride", { width: 1440, height: 1100, deviceScaleFactor: 1, mobile: false });
 await command("Browser.setDownloadBehavior", { behavior: "allow", downloadPath });
-const navigation = await command("Page.navigate", { url: baseUrl });
+const navigation = await command("Page.navigate", { url: studioUrl });
 if (navigation.errorText) throw new Error(`页面导航失败：${navigation.errorText}`);
 await waitFor("document.readyState === 'complete' && document.querySelector('#result-count')", "应用初始化");
 await evaluate(`new Promise((resolve, reject) => {
@@ -280,6 +281,12 @@ await waitFor("!document.querySelector('#empty-state').hidden && !document.query
 checked("空结果状态", "显示说明与清除筛选入口");
 await evaluate("document.querySelector('#empty-clear').click()");
 await waitFor("document.querySelectorAll('.asset-card').length === 9", "空结果清除筛选");
+
+await evaluate("window.confirm = () => true; document.querySelector('#restore-samples').click(); true");
+await waitFor("document.querySelector('#result-count')?.textContent.includes('9 / 9') && [...document.querySelectorAll('.asset-title')].some(node => node.textContent === '11类切割图案目录')", "恢复原始精选案例", 15000);
+const restoreKeepsUpload = await evaluate("[...document.querySelectorAll('.origin-badge')].some(node => node.textContent.includes('本地上传'))");
+if (!restoreKeepsUpload) throw new Error("恢复精选案例错误删除了个人上传素材");
+checked("恢复原始精选案例", "覆盖8个样例ID，但保留个人上传素材");
 
 await command("Page.addScriptToEvaluateOnNewDocument", { source: `
   const nativeFetch = window.fetch.bind(window);

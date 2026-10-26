@@ -117,8 +117,11 @@ const server = createServer(async (request, response) => {
       }
     }
     const relativePath = decodeURIComponent(url.pathname === "/" ? "/index.html" : url.pathname).replace(/^[/\\]+/, "");
-    const filePath = resolve(root, relativePath);
-    if (!filePath.startsWith(resolve(root) + sep) || !existsSync(filePath) || !statSync(filePath).isFile()) {
+    const candidates = extname(relativePath) ? [relativePath] : [relativePath, `${relativePath}.html`];
+    const filePath = candidates.map((candidate) => resolve(root, candidate)).find((candidate) => (
+      candidate.startsWith(resolve(root) + sep) && existsSync(candidate) && statSync(candidate).isFile()
+    ));
+    if (!filePath) {
       response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
       response.end("404 · 文件不存在");
       return;

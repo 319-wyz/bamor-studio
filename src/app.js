@@ -18,6 +18,7 @@ const elements = {
   importSamples: document.querySelector("#import-samples"),
   imageUpload: document.querySelector("#image-upload"),
   restoreJson: document.querySelector("#restore-json"),
+  restoreSamples: document.querySelector("#restore-samples"),
   search: document.querySelector("#search-input"),
   stageFilter: document.querySelector("#stage-filter"),
   sourceFilter: document.querySelector("#source-filter"),
@@ -81,6 +82,7 @@ function setLibraryControls(ready) {
   elements.importSamples.disabled = !ready;
   elements.imageUpload.disabled = !ready;
   elements.restoreJson.disabled = !ready;
+  elements.restoreSamples.disabled = !ready;
   elements.exportCsv.disabled = !ready;
   elements.exportJson.disabled = !ready;
 }
@@ -356,6 +358,18 @@ async function loadAiStatus() {
   setAiStatusView("checking", "正在检查模型配置…", "模型状态检查与本地素材库分别运行。", false);
   try {
     const response = await fetch("/api/ai-status", { cache: "no-store", signal: controller.signal });
+    const contentType = response.headers.get("content-type") || "";
+    if (!contentType.includes("application/json")) {
+      if (requestId !== state.aiStatusRequest) return;
+      state.aiStatus = { configured: false, max_candidates: 12, configuration_state: "static_demo" };
+      setAiStatusView(
+        "unconfigured",
+        "在线展示版暂不可调用AI",
+        "公开静态版不保存模型密钥；素材导入、筛选、比较、人工审核与导出仍可使用。本地服务端配置后可启用真实AI选图。",
+      );
+      updateAiControls();
+      return;
+    }
     if (!response.ok) throw new Error(`连接状态接口返回HTTP ${response.status}`);
     const status = await response.json();
     if (requestId !== state.aiStatusRequest) return;
@@ -579,30 +593,11 @@ async function importSamples() {
   catch (error) { return showToast(error.message, "error"); }
   setBusy(elements.importSamples, true, "正在导入…");
   try {
-    const response = await fetch("data/assets.json", { cache: "no-store" });
-    if (!response.ok) throw new Error(`样例清单读取失败（HTTP ${response.status}）`);
-    const samples = await response.json();
+    const samples = await loadSampleManifest();
     if (!Array.isArray(samples) || samples.length !== 8) throw new Error("样例清单不是预期的8条记录");
     const existing = new Set(state.assets.map((asset) => asset.id));
     const pending = samples.filter((asset) => !existing.has(asset.id));
-    const records = [];
-    for (const source of pending) {
-      const imageResponse = await fetch(source.file);
-      if (!imageResponse.ok) throw new Error(`无法读取样例图片 ${source.file}`);
-      const blob = await imageResponse.blob();
-      records.push({
-        asset: {
-          ...source,
-          library_origin: "sample",
-          file_name: source.file.split("/").pop(),
-          rejection_reasons: [],
-          rubric_version: "v0.1",
-          created_at: source.prepared_on ? `${source.prepared_on}T00:00:00+08:00` : new Date().toISOString(),
-          updated_at: null,
-        },
-        blob,
-      });
-    }
+    const records = await loadSampleRecords(pending);
     if (records.length) await saveAssets(database, records);
     await reloadLibrary();
     showToast(records.length ? `已导入${records.length}份样例；现有样例不会重复` : "8份样例已在素材库中，没有创建副本");
@@ -610,6 +605,62 @@ async function importSamples() {
     showToast(error.message || "样例导入失败", "error");
   } finally {
     setBusy(elements.importSamples, false);
+  }
+}
+
+async function loadSampleManifest() {
+  const response = await fetch("data/assets.json", { cache: "no-store" });
+  if (!response.ok) throw new Error(`样例清单读取失败（HTTP ${response.status}）`);
+  const contentType = response.headers.get("content-type") || "";
+  if (!contentType.includes("application/json")) {
+    throw new Error("样例清单地址返回了网页而不是JSON；公开部署缺少 data/assets.json，请更新静态文件后重试");
+  }
+  try { return await response.json(); }
+  catch { throw new Error("样例清单JSON格式无法解析，请检查部署文件是否完整"); }
+}
+
+async function loadSampleRecords(samples) {
+  const records = [];
+  for (const source of samples) {
+    const imageResponse = await fetch(source.file, { cache: "no-store" });
+    const contentType = imageResponse.headers.get("content-type") || "";
+    if (!imageResponse.ok || !contentType.startsWith("image/")) {
+      throw new Error(`精选案例图片无法读取：${source.title || source.id}（HTTP ${imageResponse.status}，${contentType || "未知格式"}）`);
+    }
+    const blob = await imageResponse.blob();
+    records.push({
+      asset: {
+        ...source,
+        library_origin: "sample",
+        file_name: source.file.split("/").pop(),
+        rejection_reasons: [],
+        rubric_version: "v0.1",
+        created_at: source.prepared_on ? `${source.prepared_on}T00:00:00+08:00` : new Date().toISOString(),
+        updated_at: null,
+      },
+      blob,
+    });
+  }
+  return records;
+}
+
+async function restoreOriginalSamples() {
+  if (!window.confirm("恢复8份原始精选案例会覆盖同ID样例的本地标注，但不会删除你上传的图片或其他AI任务。继续吗？")) return;
+  let database;
+  try { database = await requireDatabase(); }
+  catch (error) { return showToast(error.message, "error"); }
+  setBusy(elements.restoreSamples, true, "正在恢复…");
+  try {
+    const samples = await loadSampleManifest();
+    if (!Array.isArray(samples) || samples.length !== 8) throw new Error("样例清单不是预期的8条记录");
+    await saveAssets(database, await loadSampleRecords(samples));
+    releaseObjectUrls();
+    await reloadLibrary();
+    showToast("已恢复8份原始精选案例；个人上传和其他记录未被清除");
+  } catch (error) {
+    showToast(`恢复精选案例失败：${error.message}`, "error");
+  } finally {
+    setBusy(elements.restoreSamples, false);
   }
 }
 
@@ -822,6 +873,7 @@ function bindEvents() {
     } catch (error) { showToast(`恢复失败：${error.message}`, "error"); }
     finally { event.target.value = ""; }
   });
+  elements.restoreSamples.addEventListener("click", restoreOriginalSamples);
   for (const input of [elements.search, elements.stageFilter, elements.sourceFilter, elements.typeFilter, elements.statusFilter, elements.tagFilter]) {
     input.addEventListener("input", render);
   }

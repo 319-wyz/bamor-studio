@@ -10,7 +10,7 @@
   --muted: rgba(58, 35, 10, .7);
   --line: rgba(58, 35, 10, .2);
   --shadow: 0 24px 70px rgba(58, 35, 10, .13);
-  --serif: Georgia, "Times New Roman", "Noto Serif SC", serif;
+  --serif: "Noto Serif SC", "Songti SC", STSong, Georgia, "Times New Roman", serif;
   --sans: Inter, "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
   font-family: var(--sans);
 }
@@ -95,7 +95,7 @@ main { width: min(1440px, calc(100% - 48px)); margin: 0 auto; }
   padding: clamp(56px, 8vw, 116px) 0;
 }
 .hero-copy { padding-left: clamp(0px, 10vw, 150px); }
-.hero h1 { max-width: 760px; margin: 18px 0 20px; font: 700 clamp(3rem, 6vw, 7rem)/.92 var(--serif); letter-spacing: -.065em; }
+.hero h1 { max-width: 700px; margin: 18px 0 26px; font: 500 clamp(2.65rem, 4.8vw, 5.6rem)/1.08 var(--serif); letter-spacing: -.025em; text-wrap: balance; }
 .hero-en { max-width: 660px; margin: 0 0 36px; font: italic clamp(1rem, 1.45vw, 1.35rem)/1.5 var(--serif); }
 .hero-summary { max-width: 640px; margin: 0 0 12px; font-size: 1rem; line-height: 1.85; }
 .hero .translation { max-width: 660px; margin: 0; font-size: .84rem; line-height: 1.65; }
@@ -122,7 +122,7 @@ main { width: min(1440px, calc(100% - 48px)); margin: 0 auto; }
 .hero-media { margin: 0; }
 .hero-media-frame { position: relative; overflow: hidden; aspect-ratio: 16 / 10; background: var(--sage); box-shadow: var(--shadow); clip-path: inset(0 0 0 0 round 1px); }
 .hero-media-frame::after { content: "T2 / PROTOTYPE EVIDENCE"; position: absolute; right: 12px; bottom: 12px; padding: 6px 8px; background: rgba(58,35,10,.86); color: white; font-size: .58rem; letter-spacing: .12em; }
-.hero-media-frame img, .hero-media-frame video { width: 100%; height: 100%; object-fit: cover; }
+.hero-media-frame img, .hero-media-frame video { width: 100%; height: 100%; object-fit: contain; object-position: center; }
 .hero-media-frame img { animation: material-breathe 9s ease-in-out infinite alternate; }
 .hero-media.is-video .hero-media-frame img { display: none; }
 .hero-media video { opacity: 0; transition: opacity .45s ease; }
@@ -131,32 +131,41 @@ main { width: min(1440px, calc(100% - 48px)); margin: 0 auto; }
 .hero-media figcaption { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 12px; color: var(--muted); font-size: .68rem; line-height: 1.5; }
 @keyframes material-breathe { from { transform: scale(1.005) translateY(0); } to { transform: scale(1.025) translateY(-4px); } }
 
-.story-trail { margin: 0 0 clamp(100px, 14vw, 190px); padding: 26px; border: 1px solid var(--line); background: var(--sage); }
+.story-trail { margin: 0 0 clamp(100px, 14vw, 190px); padding: 26px; border: 1px solid var(--line); background: var(--sage); scroll-margin-top: 92px; }
 .trail-heading { display: flex; justify-content: space-between; gap: 30px; align-items: end; padding-bottom: 22px; border-bottom: 1px solid rgba(58,35,10,.24); }
 .trail-heading h2 { margin: 7px 0 6px; font: 700 clamp(1.8rem, 3.4vw, 3.8rem)/1 var(--serif); letter-spacing: -.04em; }
 .trail-heading p { margin: 0; max-width: 660px; line-height: 1.6; }
 .trail-instruction { flex: 0 0 auto; text-align: right; font-size: .72rem; }
-.trail-field { position: relative; min-height: 430px; overflow: hidden; isolation: isolate; cursor: crosshair; }
-.trail-axis { position: absolute; inset: auto 5% 34px; display: grid; grid-template-columns: repeat(5,1fr); height: 1px; background: rgba(58,35,10,.25); }
-.trail-axis span { width: 8px; height: 8px; margin-top: -4px; border-radius: 50%; background: var(--brown); }
-.trail-axis span:last-child { justify-self: end; }
-.trail-empty { position: absolute; inset: 50% auto auto 50%; margin: 0; transform: translate(-50%,-50%); white-space: nowrap; color: rgba(58,35,10,.6); font: italic clamp(.8rem, 1.2vw, 1.05rem) var(--serif); }
-.trail-card { position: absolute; z-index: var(--z,1); width: clamp(190px, 21vw, 310px); margin: 0; pointer-events: none; background: var(--surface); box-shadow: 0 18px 50px rgba(58,35,10,.2); animation: trail-in .42s cubic-bezier(.22,1,.36,1) both; }
-.trail-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
-.trail-card figcaption { display: grid; gap: 2px; padding: 9px 10px; font-size: .64rem; }
-.trail-card figcaption span { color: var(--muted); }
-.trail-card.is-leaving { animation: trail-out .3s ease both; }
-@keyframes trail-in { from { opacity: 0; transform: translate(-50%,-42%) scale(.92); clip-path: inset(0 45%); } to { opacity: 1; transform: translate(-50%,-50%) scale(1); clip-path: inset(0); } }
-@keyframes trail-out { to { opacity: 0; transform: translate(-50%,-58%) scale(.96); } }
+.trail-field { position: relative; min-height: 470px; overflow: hidden; isolation: isolate; }
+.trail-preview { position: absolute; top: 26px; left: var(--trail-left, 10%); width: clamp(190px, 18vw, 280px); margin: 0; transform: translateX(-50%); background: var(--surface); box-shadow: 0 18px 50px rgba(58,35,10,.2); transition: left .28s cubic-bezier(.22,1,.36,1), opacity .12s ease, transform .28s ease; }
+.trail-preview.is-switching { opacity: .35; transform: translateX(-50%) translateY(7px) scale(.985); }
+.trail-preview img { width: 100%; aspect-ratio: 16/9; object-fit: contain; background: var(--brown); }
+.trail-preview figcaption { display: grid; gap: 4px; padding: 10px 12px; font-size: .68rem; line-height: 1.45; }
+.trail-preview figcaption span { color: var(--muted); }
+.trail-stages { position: absolute; inset: auto 0 12px; display: grid; grid-template-columns: repeat(5, 1fr); margin: 0; padding: 0; list-style: none; }
+.trail-stages::before { content: ""; position: absolute; top: 9px; left: 10%; right: 10%; height: 1px; background: rgba(58,35,10,.28); }
+.trail-stages li { min-width: 0; }
+.trail-stages button { position: relative; z-index: 1; display: grid; justify-items: center; align-content: start; gap: 4px; width: 100%; min-height: 96px; padding: 0 6px; border: 0; background: transparent; color: var(--brown); cursor: pointer; text-align: center; }
+.trail-stages button i { width: 18px; height: 18px; margin-bottom: 8px; border: 1px solid var(--brown); border-radius: 50%; background: var(--sage); transition: transform .16s ease, background-color .16s ease; }
+.trail-stages button strong { font-size: .72rem; line-height: 1.25; }
+.trail-stages button span { color: var(--muted); font-size: .6rem; line-height: 1.25; }
+.trail-stages button:hover i, .trail-stages button[aria-current="step"] i { transform: scale(1.18); background: var(--brown); }
+.trail-stages button[aria-current="step"] strong { color: var(--caramel); }
+.trail-stages button:focus-visible { outline: 0; }
+.trail-stages button:focus-visible i { box-shadow: 0 0 0 3px var(--paper), 0 0 0 5px var(--caramel); }
 
-.project-section { position: relative; min-height: 82vh; padding: clamp(92px, 13vw, 180px) 0; border-top: 1px solid var(--line); scroll-margin-top: 72px; }
+.project-section { position: relative; min-height: 78vh; padding: clamp(96px, 11vw, 156px) 0; border-top: 1px solid var(--line); scroll-margin-top: 72px; }
 .section-heading { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 28px; align-items: start; margin-left: clamp(0px, 10vw, 150px); }
-.section-heading h2 { max-width: 960px; margin: 0; font: 700 clamp(2.45rem, 5vw, 5.6rem)/.98 var(--serif); letter-spacing: -.055em; }
+.section-heading h2 { max-width: 900px; margin: 0; font: 500 clamp(2.15rem, 4vw, 4.55rem)/1.12 var(--serif); letter-spacing: -.025em; text-wrap: balance; }
 .section-heading .translation { grid-column: 2; margin: 10px 0 0; font: italic 1rem/1.5 var(--serif); }
 
 .context-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 80px; margin: clamp(70px, 9vw, 130px) 0 0 clamp(0px, 10vw, 150px); }
-.big-copy { margin: 0; font: 400 clamp(1.7rem, 3vw, 3.4rem)/1.3 var(--serif); letter-spacing: -.025em; }
+.context-question { max-width: 760px; margin: 0; font: 400 clamp(1.55rem, 2.6vw, 2.85rem)/1.4 var(--serif); letter-spacing: -.012em; }
 .context-statement .translation { margin: 26px 0 0; line-height: 1.7; }
+.research-directions { display: grid; gap: 0; margin: 34px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--brown); }
+.research-directions li { display: grid; grid-template-columns: 42px 1fr; gap: 12px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+.research-directions span { color: var(--caramel); font-size: .68rem; font-weight: 850; }
+.research-directions strong { font: 500 1rem/1.45 var(--serif); }
 .fact-ledger { margin: 0; border-top: 1px solid var(--brown); }
 .fact-ledger div { display: grid; grid-template-columns: 105px 1fr; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--line); }
 .fact-ledger dt { color: var(--caramel); font-size: .68rem; font-weight: 850; }
@@ -273,11 +282,12 @@ html[data-motion="off"] *, html[data-motion="off"] *::before, html[data-motion="
   .view-switch a { min-width: 104px; padding: 7px 8px; }
   main, .project-footer { width: min(100% - 28px, 1440px); }
   .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 64px; }
-  .hero h1 { font-size: clamp(3.25rem, 14vw, 5.8rem); }
+  .hero h1 { max-width: 11em; font-size: clamp(2.55rem, 11.5vw, 4.5rem); line-height: 1.13; }
   .hero-media { max-width: 760px; }
   .trail-heading { align-items: start; flex-direction: column; }
   .trail-instruction { text-align: left; }
-  .trail-field { min-height: 360px; }
+  .trail-field { min-height: 420px; }
+  .trail-preview { left: 50% !important; width: min(280px, 72vw); }
   .section-heading { grid-template-columns: 1fr; gap: 12px; }
   .section-heading .translation { grid-column: 1; }
   .context-grid, .comparison-report, .iteration-grid, .outcome-grid, .workbench-extension { grid-template-columns: 1fr; gap: 34px; }
@@ -297,13 +307,14 @@ html[data-motion="off"] *, html[data-motion="off"] *::before, html[data-motion="
   .view-switch a { min-width: 82px; font-size: .68rem; }
   .view-switch a span { display: none; }
   .hero { gap: 38px; padding-top: 45px; }
-  .hero h1 { font-size: clamp(2.85rem, 15vw, 4.4rem); }
+  .hero h1 { font-size: clamp(2.35rem, 10.8vw, 3.45rem); }
   .hero-media figcaption { grid-template-columns: 1fr; }
   .hero-actions, .primary-link, .secondary-link { width: 100%; }
   .story-trail { padding: 18px; }
-  .trail-field { min-height: 330px; }
-  .trail-empty { width: 82%; white-space: normal; text-align: center; line-height: 1.6; }
-  .trail-card { width: min(240px, 72vw); }
+  .trail-field { min-height: 420px; }
+  .trail-stages button { min-height: 112px; padding-inline: 3px; }
+  .trail-stages button strong { font-size: .65rem; }
+  .trail-stages button span { font-size: .52rem; }
   .project-section { min-height: auto; padding-block: 90px; }
   .section-heading h2 { font-size: clamp(2.25rem, 12vw, 3.5rem); }
   .archive-index { grid-template-columns: 1fr; }
