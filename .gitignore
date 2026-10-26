@@ -1,0 +1,52 @@
+# Dependencies and generated output
+node_modules/
+coverage/
+dist/
+build/
+
+# Environment variables and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+secrets*.json
+
+# Large editable 3D source files (website-ready exports stay tracked)
+*.3dm
+*.3dmbak
+
+# Local backups, archives and temporary files
+*.bak
+*.tmp
+*.temp
+*.log
+*.zip
+*.7z
+*.rar
+*~
+~$*
+
+# Browser and test output; keep test source files
+tests/downloads/
+tests/edge-profile-*/
+tests/*-preview*.png
+tests/theme-preview-*.png
+
+# Personal working notes not required by the public project
+docs/RESUME_STAR_WORKING_DRAFT.md
+
+# Editor and operating-system metadata
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Keep runtime media, project images, scripts and sample assets tracked.
+!media/
+!media/bamor-1024.mp4
+!sample-assets/
+!sample-assets/**

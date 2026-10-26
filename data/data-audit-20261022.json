@@ -1,0 +1,44 @@
+{
+  "prepared_on": "2026-10-22",
+  "scope": "对现有项目资料进行本轮整理与检查，非历史项目当时已完成的数据平台",
+  "record_count": 56,
+  "states": {
+    "Awake": 14,
+    "Blink": 14,
+    "Sleep": 14,
+    "Greet": 14
+  },
+  "distinct_parameters": 14,
+  "checked_required_fields": [
+    "state",
+    "parameter",
+    "value",
+    "unit",
+    "source_document",
+    "source_page"
+  ],
+  "missing_required_fields": [],
+  "duplicate_state_parameter_pairs": 0,
+  "non_numeric_values": [],
+  "missing_measurement_dates": 56,
+  "unknown_parameter_definitions": "C/R/H/D原符号保留，完整字典仍需依据图纸核对",
+  "H4_metres": {
+    "Awake": 1.04,
+    "Blink": 1.12,
+    "Sleep": 0.41,
+    "Greet": 1.07
+  },
+  "H4_Blink_minus_Sleep_metres": 0.71,
+  "sample_page_assets": 8,
+  "unreviewed_sample_assets": 8,
+  "planned_generation_tasks": 12,
+  "completed_generation_tasks": 0,
+  "generation_design": "2种行为状态 × 3种场景 × 2种光照 = 12组计划任务",
+  "review_dimensions": 4,
+  "limitations": [
+    "56条几何记录不是56次独立试验",
+    "8页整页导出不是8张独立原照片或已标注训练样本",
+    "12组任务尚无实际生成结果",
+    "节点状态差不是整体空间净高或重复运行性能"
+  ]
+}

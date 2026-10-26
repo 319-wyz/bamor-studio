@@ -1,0 +1,235 @@
+[
+  {
+    "id": "a01",
+    "title": "11类切割图案目录",
+    "file": "sample-assets/a01_t1final_p018.png",
+    "stage": "term1",
+    "materials": [
+      "plywood"
+    ],
+    "content_type": "pattern_catalogue",
+    "source_kind": "project_page",
+    "source_document": "term1_final-pre.pdf",
+    "source_page": 18,
+    "project_version": "term1",
+    "attribution": "BAMOR团队项目；个人贡献需另标",
+    "prepared_on": "2026-10-21",
+    "original_created_at": null,
+    "tags": [],
+    "review_status": "unreviewed",
+    "review_scores": {
+      "structure_consistency": null,
+      "material_expression": null,
+      "scene_fit": null,
+      "visual_clarity": null
+    },
+    "reviewer": null,
+    "reviewed_at": null,
+    "review_reason": "",
+    "notes": "整页导出，不是独立原照片或已标注训练样本"
+  },
+  {
+    "id": "a02",
+    "title": "切割图案形变比较",
+    "file": "sample-assets/a02_t1final_p022.png",
+    "stage": "term1",
+    "materials": [
+      "plywood"
+    ],
+    "content_type": "experiment_sheet",
+    "source_kind": "project_page",
+    "source_document": "term1_final-pre.pdf",
+    "source_page": 22,
+    "project_version": "term1",
+    "attribution": "BAMOR团队项目；个人贡献需另标",
+    "prepared_on": "2026-10-21",
+    "original_created_at": null,
+    "tags": [],
+    "review_status": "unreviewed",
+    "review_scores": {
+      "structure_consistency": null,
+      "material_expression": null,
+      "scene_fit": null,
+      "visual_clarity": null
+    },
+    "reviewer": null,
+    "reviewed_at": null,
+    "review_reason": "",
+    "notes": "整页导出，不是独立原照片或已标注训练样本"
+  },
+  {
+    "id": "a03",
+    "title": "两三四支腿构型原型",
+    "file": "sample-assets/a03_t1final_p024.png",
+    "stage": "term1",
+    "materials": [
+      "plywood"
+    ],
+    "content_type": "prototype_photo_page",
+    "source_kind": "project_page",
+    "source_document": "term1_final-pre.pdf",
+    "source_page": 24,
+    "project_version": "term1",
+    "attribution": "BAMOR团队项目；个人贡献需另标",
+    "prepared_on": "2026-10-21",
+    "original_created_at": null,
+    "tags": [],
+    "review_status": "unreviewed",
+    "review_scores": {
+      "structure_consistency": null,
+      "material_expression": null,
+      "scene_fit": null,
+      "visual_clarity": null
+    },
+    "reviewer": null,
+    "reviewed_at": null,
+    "review_reason": "",
+    "notes": "整页导出，不是独立原照片或已标注训练样本"
+  },
+  {
+    "id": "a04",
+    "title": "构型多维评价表",
+    "file": "sample-assets/a04_t1final_p028.png",
+    "stage": "term1",
+    "materials": [
+      "plywood"
+    ],
+    "content_type": "evaluation_sheet",
+    "source_kind": "project_page",
+    "source_document": "term1_final-pre.pdf",
+    "source_page": 28,
+    "project_version": "term1",
+    "attribution": "BAMOR团队项目；个人贡献需另标",
+    "prepared_on": "2026-10-21",
+    "original_created_at": null,
+    "tags": [],
+    "review_status": "unreviewed",
+    "review_scores": {
+      "structure_consistency": null,
+      "material_expression": null,
+      "scene_fit": null,
+      "visual_clarity": null
+    },
+    "reviewer": null,
+    "reviewed_at": null,
+    "review_reason": "",
+    "notes": "整页导出，不是独立原照片或已标注训练样本"
+  },
+  {
+    "id": "a05",
+    "title": "网格壳体与菱形变形逻辑",
+    "file": "sample-assets/a05_t2final_p018.png",
+    "stage": "term2",
+    "materials": [
+      "bamboo"
+    ],
+    "content_type": "diagram_page",
+    "source_kind": "project_page",
+    "source_document": "term2RC2_TEAM 1_final pre_2026.3.24.pdf",
+    "source_page": 18,
+    "project_version": "term2",
+    "attribution": "BAMOR团队项目；个人贡献需另标",
+    "prepared_on": "2026-10-21",
+    "original_created_at": null,
+    "tags": [],
+    "review_status": "unreviewed",
+    "review_scores": {
+      "structure_consistency": null,
+      "material_expression": null,
+      "scene_fit": null,
+      "visual_clarity": null
+    },
+    "reviewer": null,
+    "reviewed_at": null,
+    "review_reason": "",
+    "notes": "整页导出，不是独立原照片或已标注训练样本"
+  },
+  {
+    "id": "a06",
+    "title": "Awake行为状态测量页",
+    "file": "sample-assets/a06_t2final_p022.png",
+    "stage": "term2",
+    "materials": [
+      "bamboo"
+    ],
+    "content_type": "state_measurement_sheet",
+    "source_kind": "project_page",
+    "source_document": "term2RC2_TEAM 1_final pre_2026.3.24.pdf",
+    "source_page": 22,
+    "project_version": "term2",
+    "attribution": "BAMOR团队项目；个人贡献需另标",
+    "prepared_on": "2026-10-21",
+    "original_created_at": null,
+    "tags": [],
+    "review_status": "unreviewed",
+    "review_scores": {
+      "structure_consistency": null,
+      "material_expression": null,
+      "scene_fit": null,
+      "visual_clarity": null
+    },
+    "reviewer": null,
+    "reviewed_at": null,
+    "review_reason": "",
+    "notes": "整页导出，不是独立原照片或已标注训练样本"
+  },
+  {
+    "id": "a07",
+    "title": "竹构与网格壳体原型",
+    "file": "sample-assets/a07_t2final_p027.png",
+    "stage": "term2",
+    "materials": [
+      "bamboo",
+      "gridshell"
+    ],
+    "content_type": "prototype_photo_page",
+    "source_kind": "project_page",
+    "source_document": "term2RC2_TEAM 1_final pre_2026.3.24.pdf",
+    "source_page": 27,
+    "project_version": "term2",
+    "attribution": "BAMOR团队项目；个人贡献需另标",
+    "prepared_on": "2026-10-21",
+    "original_created_at": null,
+    "tags": [],
+    "review_status": "unreviewed",
+    "review_scores": {
+      "structure_consistency": null,
+      "material_expression": null,
+      "scene_fit": null,
+      "visual_clarity": null
+    },
+    "reviewer": null,
+    "reviewed_at": null,
+    "review_reason": "",
+    "notes": "整页导出，不是独立原照片或已标注训练样本"
+  },
+  {
+    "id": "a08",
+    "title": "Unity三维交互界面",
+    "file": "sample-assets/a08_t2final_p030.png",
+    "stage": "term2",
+    "materials": [
+      "digital"
+    ],
+    "content_type": "interface_demo_page",
+    "source_kind": "project_page",
+    "source_document": "term2RC2_TEAM 1_final pre_2026.3.24.pdf",
+    "source_page": 30,
+    "project_version": "term2",
+    "attribution": "BAMOR团队项目；个人贡献需另标",
+    "prepared_on": "2026-10-21",
+    "original_created_at": null,
+    "tags": [],
+    "review_status": "unreviewed",
+    "review_scores": {
+      "structure_consistency": null,
+      "material_expression": null,
+      "scene_fit": null,
+      "visual_clarity": null
+    },
+    "reviewer": null,
+    "reviewed_at": null,
+    "review_reason": "",
+    "notes": "整页导出，不是独立原照片或已标注训练样本"
+  }
+]

@@ -1,0 +1,278 @@
+[
+  {
+    "id": "g01",
+    "status": "planned",
+    "project_version": "term2_2026-03-24",
+    "reference_asset_ids": [
+      "a07"
+    ],
+    "state": "Awake",
+    "scene": "室内交互展陈",
+    "lighting": "日间柔光",
+    "structure_constraints": [
+      "保持参考图四支腿竹构主体与网格表皮关系",
+      "不要将本阶段网格表皮替换成最终弹性网布",
+      "不添加参考中没有的驱动与承重关系"
+    ],
+    "aspect_ratio": "16:9",
+    "prompt": "以BAMOR第二学期竹构网格壳体原型为参考，探索Awake状态在室内交互展陈中的视觉呈现，采用日间柔光。保留四支腿竹构主体、连接与网格表皮关系，不增减主体，不混入最终弹性网布版本。清楚表达空间尺度及可见材料。",
+    "generation_platform": null,
+    "model": null,
+    "generated_at": null,
+    "result_asset_ids": [],
+    "prepared_on": "2026-10-21"
+  },
+  {
+    "id": "g02",
+    "status": "planned",
+    "project_version": "term2_2026-03-24",
+    "reference_asset_ids": [
+      "a07"
+    ],
+    "state": "Awake",
+    "scene": "室内交互展陈",
+    "lighting": "黄昏灯光",
+    "structure_constraints": [
+      "保持参考图四支腿竹构主体与网格表皮关系",
+      "不要将本阶段网格表皮替换成最终弹性网布",
+      "不添加参考中没有的驱动与承重关系"
+    ],
+    "aspect_ratio": "16:9",
+    "prompt": "以BAMOR第二学期竹构网格壳体原型为参考，探索Awake状态在室内交互展陈中的视觉呈现，采用黄昏灯光。保留四支腿竹构主体、连接与网格表皮关系，不增减主体，不混入最终弹性网布版本。清楚表达空间尺度及可见材料。",
+    "generation_platform": null,
+    "model": null,
+    "generated_at": null,
+    "result_asset_ids": [],
+    "prepared_on": "2026-10-21"
+  },
+  {
+    "id": "g03",
+    "status": "planned",
+    "project_version": "term2_2026-03-24",
+    "reference_asset_ids": [
+      "a07"
+    ],
+    "state": "Awake",
+    "scene": "户外临时活动",
+    "lighting": "日间柔光",
+    "structure_constraints": [
+      "保持参考图四支腿竹构主体与网格表皮关系",
+      "不要将本阶段网格表皮替换成最终弹性网布",
+      "不添加参考中没有的驱动与承重关系"
+    ],
+    "aspect_ratio": "16:9",
+    "prompt": "以BAMOR第二学期竹构网格壳体原型为参考，探索Awake状态在户外临时活动中的视觉呈现，采用日间柔光。保留四支腿竹构主体、连接与网格表皮关系，不增减主体，不混入最终弹性网布版本。清楚表达空间尺度及可见材料。",
+    "generation_platform": null,
+    "model": null,
+    "generated_at": null,
+    "result_asset_ids": [],
+    "prepared_on": "2026-10-21"
+  },
+  {
+    "id": "g04",
+    "status": "planned",
+    "project_version": "term2_2026-03-24",
+    "reference_asset_ids": [
+      "a07"
+    ],
+    "state": "Awake",
+    "scene": "户外临时活动",
+    "lighting": "黄昏灯光",
+    "structure_constraints": [
+      "保持参考图四支腿竹构主体与网格表皮关系",
+      "不要将本阶段网格表皮替换成最终弹性网布",
+      "不添加参考中没有的驱动与承重关系"
+    ],
+    "aspect_ratio": "16:9",
+    "prompt": "以BAMOR第二学期竹构网格壳体原型为参考，探索Awake状态在户外临时活动中的视觉呈现，采用黄昏灯光。保留四支腿竹构主体、连接与网格表皮关系，不增减主体，不混入最终弹性网布版本。清楚表达空间尺度及可见材料。",
+    "generation_platform": null,
+    "model": null,
+    "generated_at": null,
+    "result_asset_ids": [],
+    "prepared_on": "2026-10-21"
+  },
+  {
+    "id": "g05",
+    "status": "planned",
+    "project_version": "term2_2026-03-24",
+    "reference_asset_ids": [
+      "a07"
+    ],
+    "state": "Awake",
+    "scene": "黑盒拍摄展示",
+    "lighting": "日间柔光",
+    "structure_constraints": [
+      "保持参考图四支腿竹构主体与网格表皮关系",
+      "不要将本阶段网格表皮替换成最终弹性网布",
+      "不添加参考中没有的驱动与承重关系"
+    ],
+    "aspect_ratio": "16:9",
+    "prompt": "以BAMOR第二学期竹构网格壳体原型为参考，探索Awake状态在黑盒拍摄展示中的视觉呈现，采用日间柔光。保留四支腿竹构主体、连接与网格表皮关系，不增减主体，不混入最终弹性网布版本。清楚表达空间尺度及可见材料。",
+    "generation_platform": null,
+    "model": null,
+    "generated_at": null,
+    "result_asset_ids": [],
+    "prepared_on": "2026-10-21"
+  },
+  {
+    "id": "g06",
+    "status": "planned",
+    "project_version": "term2_2026-03-24",
+    "reference_asset_ids": [
+      "a07"
+    ],
+    "state": "Awake",
+    "scene": "黑盒拍摄展示",
+    "lighting": "黄昏灯光",
+    "structure_constraints": [
+      "保持参考图四支腿竹构主体与网格表皮关系",
+      "不要将本阶段网格表皮替换成最终弹性网布",
+      "不添加参考中没有的驱动与承重关系"
+    ],
+    "aspect_ratio": "16:9",
+    "prompt": "以BAMOR第二学期竹构网格壳体原型为参考，探索Awake状态在黑盒拍摄展示中的视觉呈现，采用黄昏灯光。保留四支腿竹构主体、连接与网格表皮关系，不增减主体，不混入最终弹性网布版本。清楚表达空间尺度及可见材料。",
+    "generation_platform": null,
+    "model": null,
+    "generated_at": null,
+    "result_asset_ids": [],
+    "prepared_on": "2026-10-21"
+  },
+  {
+    "id": "g07",
+    "status": "planned",
+    "project_version": "term2_2026-03-24",
+    "reference_asset_ids": [
+      "a07"
+    ],
+    "state": "Blink",
+    "scene": "室内交互展陈",
+    "lighting": "日间柔光",
+    "structure_constraints": [
+      "保持参考图四支腿竹构主体与网格表皮关系",
+      "不要将本阶段网格表皮替换成最终弹性网布",
+      "不添加参考中没有的驱动与承重关系"
+    ],
+    "aspect_ratio": "16:9",
+    "prompt": "以BAMOR第二学期竹构网格壳体原型为参考，探索Blink状态在室内交互展陈中的视觉呈现，采用日间柔光。保留四支腿竹构主体、连接与网格表皮关系，不增减主体，不混入最终弹性网布版本。清楚表达空间尺度及可见材料。",
+    "generation_platform": null,
+    "model": null,
+    "generated_at": null,
+    "result_asset_ids": [],
+    "prepared_on": "2026-10-21"
+  },
+  {
+    "id": "g08",
+    "status": "planned",
+    "project_version": "term2_2026-03-24",
+    "reference_asset_ids": [
+      "a07"
+    ],
+    "state": "Blink",
+    "scene": "室内交互展陈",
+    "lighting": "黄昏灯光",
+    "structure_constraints": [
+      "保持参考图四支腿竹构主体与网格表皮关系",
+      "不要将本阶段网格表皮替换成最终弹性网布",
+      "不添加参考中没有的驱动与承重关系"
+    ],
+    "aspect_ratio": "16:9",
+    "prompt": "以BAMOR第二学期竹构网格壳体原型为参考，探索Blink状态在室内交互展陈中的视觉呈现，采用黄昏灯光。保留四支腿竹构主体、连接与网格表皮关系，不增减主体，不混入最终弹性网布版本。清楚表达空间尺度及可见材料。",
+    "generation_platform": null,
+    "model": null,
+    "generated_at": null,
+    "result_asset_ids": [],
+    "prepared_on": "2026-10-21"
+  },
+  {
+    "id": "g09",
+    "status": "planned",
+    "project_version": "term2_2026-03-24",
+    "reference_asset_ids": [
+      "a07"
+    ],
+    "state": "Blink",
+    "scene": "户外临时活动",
+    "lighting": "日间柔光",
+    "structure_constraints": [
+      "保持参考图四支腿竹构主体与网格表皮关系",
+      "不要将本阶段网格表皮替换成最终弹性网布",
+      "不添加参考中没有的驱动与承重关系"
+    ],
+    "aspect_ratio": "16:9",
+    "prompt": "以BAMOR第二学期竹构网格壳体原型为参考，探索Blink状态在户外临时活动中的视觉呈现，采用日间柔光。保留四支腿竹构主体、连接与网格表皮关系，不增减主体，不混入最终弹性网布版本。清楚表达空间尺度及可见材料。",
+    "generation_platform": null,
+    "model": null,
+    "generated_at": null,
+    "result_asset_ids": [],
+    "prepared_on": "2026-10-21"
+  },
+  {
+    "id": "g10",
+    "status": "planned",
+    "project_version": "term2_2026-03-24",
+    "reference_asset_ids": [
+      "a07"
+    ],
+    "state": "Blink",
+    "scene": "户外临时活动",
+    "lighting": "黄昏灯光",
+    "structure_constraints": [
+      "保持参考图四支腿竹构主体与网格表皮关系",
+      "不要将本阶段网格表皮替换成最终弹性网布",
+      "不添加参考中没有的驱动与承重关系"
+    ],
+    "aspect_ratio": "16:9",
+    "prompt": "以BAMOR第二学期竹构网格壳体原型为参考，探索Blink状态在户外临时活动中的视觉呈现，采用黄昏灯光。保留四支腿竹构主体、连接与网格表皮关系，不增减主体，不混入最终弹性网布版本。清楚表达空间尺度及可见材料。",
+    "generation_platform": null,
+    "model": null,
+    "generated_at": null,
+    "result_asset_ids": [],
+    "prepared_on": "2026-10-21"
+  },
+  {
+    "id": "g11",
+    "status": "planned",
+    "project_version": "term2_2026-03-24",
+    "reference_asset_ids": [
+      "a07"
+    ],
+    "state": "Blink",
+    "scene": "黑盒拍摄展示",
+    "lighting": "日间柔光",
+    "structure_constraints": [
+      "保持参考图四支腿竹构主体与网格表皮关系",
+      "不要将本阶段网格表皮替换成最终弹性网布",
+      "不添加参考中没有的驱动与承重关系"
+    ],
+    "aspect_ratio": "16:9",
+    "prompt": "以BAMOR第二学期竹构网格壳体原型为参考，探索Blink状态在黑盒拍摄展示中的视觉呈现，采用日间柔光。保留四支腿竹构主体、连接与网格表皮关系，不增减主体，不混入最终弹性网布版本。清楚表达空间尺度及可见材料。",
+    "generation_platform": null,
+    "model": null,
+    "generated_at": null,
+    "result_asset_ids": [],
+    "prepared_on": "2026-10-21"
+  },
+  {
+    "id": "g12",
+    "status": "planned",
+    "project_version": "term2_2026-03-24",
+    "reference_asset_ids": [
+      "a07"
+    ],
+    "state": "Blink",
+    "scene": "黑盒拍摄展示",
+    "lighting": "黄昏灯光",
+    "structure_constraints": [
+      "保持参考图四支腿竹构主体与网格表皮关系",
+      "不要将本阶段网格表皮替换成最终弹性网布",
+      "不添加参考中没有的驱动与承重关系"
+    ],
+    "aspect_ratio": "16:9",
+    "prompt": "以BAMOR第二学期竹构网格壳体原型为参考，探索Blink状态在黑盒拍摄展示中的视觉呈现，采用黄昏灯光。保留四支腿竹构主体、连接与网格表皮关系，不增减主体，不混入最终弹性网布版本。清楚表达空间尺度及可见材料。",
+    "generation_platform": null,
+    "model": null,
+    "generated_at": null,
+    "result_asset_ids": [],
+    "prepared_on": "2026-10-21"
+  }
+]

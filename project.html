@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="BAMOR — UCL团队响应式空间研究与其后的个人设计素材工作台延伸。" />
+    <title>BAMOR · 响应式空间项目展示</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%233A230A'/%3E%3Cpath d='M18 14h18c9 0 14 4 14 12 0 5-3 8-7 10 6 1 9 5 9 11 0 9-6 13-16 13H18V14zm10 9v10h7c4 0 6-2 6-5s-2-5-6-5h-7zm0 18v10h8c4 0 6-2 6-5s-2-5-6-5h-8z' fill='%23ffffff'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="project.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#project-story">跳到项目内容 / Skip to project</a>
+
+    <header class="project-header">
+      <a class="wordmark" href="#top" aria-label="返回BAMOR项目展示顶部">
+        <span>BAMOR</span>
+        <small>Responsive spatial research</small>
+      </a>
+      <nav class="view-switch" aria-label="页面切换 / View switch">
+        <a class="is-current" href="project.html" aria-current="page">项目展示 <span>Project</span></a>
+        <a href="/">素材工作台 <span>Workbench</span></a>
+      </nav>
+      <button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false">
+        动效开启 <span>Motion on</span>
+      </button>
+    </header>
+
+    <aside class="chapter-rail" aria-label="项目章节 / Project chapters">
+      <div class="chapter-progress" aria-hidden="true"><span id="chapter-progress-bar"></span></div>
+      <p><span id="chapter-current">01</span> / 05</p>
+      <nav>
+        <a href="#context" data-chapter-link="context" class="is-active"><span>01</span>背景与需求</a>
+        <a href="#material" data-chapter-link="material"><span>02</span>材料与结构</a>
+        <a href="#behaviour" data-chapter-link="behaviour"><span>03</span>行为与交互</a>
+        <a href="#iteration" data-chapter-link="iteration"><span>04</span>迭代与取舍</a>
+        <a href="#outcome" data-chapter-link="outcome"><span>05</span>成果与延伸</a>
+      </nav>
+    </aside>
+
+    <main id="project-story">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy reveal-block">
+          <p class="eyebrow">UCL team research · 2025—2026</p>
+          <h1 id="hero-title">让空间对身体、音乐与环境状态作出回应。</h1>
+          <p class="hero-en" lang="en">A material-led exploration of spaces that respond to bodies, music and changing environmental states.</p>
+          <p class="hero-summary">BAMOR 面向小型表演与展陈语境，探索可感知输入、可控制形变并能现场搭建的响应式空间。项目从切割图案、构型与竹材原型一路推进到行为状态与数字界面。</p>
+          <p class="translation" lang="en">BAMOR explores responsive spatial structures for small-scale performance and exhibition settings: sensing input, controlling deformation, and translating physical states into an interface that can be configured and discussed.</p>
+          <div class="hero-actions">
+            <a class="primary-link" href="#context">阅读项目过程 <span>Read the process ↓</span></a>
+            <a class="secondary-link" href="/">进入素材工作台 <span>Open workbench ↗</span></a>
+          </div>
+        </div>
+
+        <figure class="hero-media reveal-media" id="hero-media" data-video-source="media/bamor-1024.mp4">
+          <div class="hero-media-frame" id="hero-media-frame">
+            <img src="sample-assets/a07_t2final_p027.png" alt="BAMOR竹构与网格壳体原型项目页，画面中是四支腿弧形结构和网格表皮" />
+          </div>
+          <figcaption>
+            <span>当前回退：T2项目页整页导出，并非独立原照片。</span>
+            <span lang="en">Current fallback: a full exported T2 project page, not a standalone photograph.</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="story-trail reveal-block" aria-labelledby="trail-title" tabindex="0">
+        <div class="trail-heading">
+          <div>
+            <p class="eyebrow">A material story in five frames</p>
+            <h2 id="trail-title">沿着实验路径预览项目</h2>
+            <p lang="en">Move through the field to reveal five project pages in sequence—from material studies to responsive behaviour.</p>
+          </div>
+          <p class="trail-instruction">移动鼠标；触屏点击或轻扫；键盘按 Enter<br /><span lang="en">Move, tap, swipe, or press Enter</span></p>
+        </div>
+        <div class="trail-field" id="trail-field" aria-live="polite">
+          <div class="trail-axis" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+          <p class="trail-empty">问题与目标 → 材料试验 → 结构取舍 → 交互行为 → 原型证据</p>
+        </div>
+      </section>
+
+      <section class="project-section section-context" id="context" data-chapter="context">
+        <header class="section-heading reveal-block">
+          <p class="chapter-no">01 / Context &amp; need</p>
+          <h2>项目背景与空间需求</h2>
+          <p class="translation" lang="en">Context and the spatial need</p>
+        </header>
+        <div class="context-grid">
+          <article class="context-statement reveal-block">
+            <p class="big-copy">静态布景难以随表演者、音乐与场景状态变化。BAMOR 将这个问题拆成三件事：材料能否形变、构型能否形成空间、行为能否被描述和控制。</p>
+            <p class="translation" lang="en">Static scenery does not readily change with a performer, music or a scene. BAMOR separates that challenge into three questions: can the material deform, can the configuration define space, and can the behaviour be described and controlled?</p>
+          </article>
+          <dl class="fact-ledger reveal-block">
+            <div><dt>项目性质</dt><dd>UCL团队研究<br /><span lang="en">UCL team research</span></dd></div>
+            <div><dt>研究阶段</dt><dd>T1 木板切割与构型；T2 竹构、网格壳体与行为状态<br /><span lang="en">T1 plywood kerfing and configurations; T2 bamboo, gridshell studies and behaviour states</span></dd></div>
+            <div><dt>可见证据</dt><dd>8份PDF整页导出、56条几何记录<br /><span lang="en">8 exported PDF pages and 56 geometry records</span></dd></div>
+            <div><dt>边界</dt><dd>团队项目；现有资料不用于推定个人独立贡献<br /><span lang="en">A team project; the current evidence does not assign individual authorship</span></dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="project-section" id="material" data-chapter="material">
+        <header class="section-heading reveal-block">
+          <p class="chapter-no">02 / Material &amp; structure</p>
+          <h2>材料试验不是装饰，而是构型决策的入口。</h2>
+          <p class="translation" lang="en">Material tests were not decorative studies; they informed configuration decisions.</p>
+        </header>
+
+        <div class="archive-shell reveal-block">
+          <div class="archive-index" role="tablist" aria-label="T1实验档案">
+            <button type="button" role="tab" aria-selected="true" data-archive="patterns">01 <span>切割图案目录</span><small>Pattern catalogue</small></button>
+            <button type="button" role="tab" aria-selected="false" data-archive="bending">02 <span>弯曲与扭转比较</span><small>Bending &amp; twisting</small></button>
+            <button type="button" role="tab" aria-selected="false" data-archive="legs">03 <span>2/3/4支腿原型</span><small>Leg configurations</small></button>
+            <button type="button" role="tab" aria-selected="false" data-archive="evaluation">04 <span>构型评价表</span><small>Evaluation sheet</small></button>
+          </div>
+          <figure class="archive-viewer" role="tabpanel" tabindex="0">
+            <div class="archive-image-mask"><img id="archive-image" src="sample-assets/a01_t1final_p018.png" alt="11类切割图案目录项目页" /></div>
+            <figcaption id="archive-caption">
+              <strong>11类切割图案目录</strong>
+              <span>term1_final-pre.pdf · p18 · PDF整页导出</span>
+              <span lang="en">Eleven kerf-pattern families collected on one exported project page.</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="comparison-report reveal-block" aria-labelledby="comparison-title">
+          <div>
+            <p class="eyebrow">Configuration comparison</p>
+            <h3 id="comparison-title">项目页记录的2 / 3 / 4支腿构型评价</h3>
+            <p>数字来自T1汇报页中的11项评价汇总，只作为当时方案取舍记录，不转写成经独立验证的结构性能。</p>
+            <p class="translation" lang="en">These totals reproduce the eleven-criterion comparison shown in the T1 presentation. They document a design decision; they are not independent structural certification.</p>
+          </div>
+          <div class="score-comparison" aria-label="构型总分">
+            <div style="--score: 20"><span>2-leg</span><strong>20</strong><i></i></div>
+            <div class="is-emphasized" style="--score: 39"><span>3-leg</span><strong>39</strong><i></i></div>
+            <div style="--score: 37"><span>4-leg</span><strong>37</strong><i></i></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section section-behaviour" id="behaviour" data-chapter="behaviour">
+        <header class="section-heading reveal-block">
+          <p class="chapter-no">03 / Behaviour &amp; interaction</p>
+          <h2>把空间变化写成可比较的状态。</h2>
+          <p class="translation" lang="en">Turning spatial change into states that can be compared.</p>
+        </header>
+
+        <div class="behaviour-visuals reveal-block">
+          <figure>
+            <img src="sample-assets/a06_t2final_p022.png" alt="Awake行为状态测量项目页，包含实体竹构照片、几何示意和参数" />
+            <figcaption>Awake 状态测量页 · T2 p22 · 整页导出</figcaption>
+          </figure>
+          <figure>
+            <img src="sample-assets/a08_t2final_p030.png" alt="Unity三维交互界面项目页，标注视角、环境参数、状态和颜色控制区域" />
+            <figcaption>Unity 界面页 · T2 p30 · 整页导出</figcaption>
+          </figure>
+        </div>
+
+        <div class="state-report reveal-block">
+          <div class="state-report-heading">
+            <div>
+              <p class="eyebrow">56 traceable records</p>
+              <h3>4类状态 × 每类14个原参数</h3>
+              <p>保留C / R / H / D原符号和米制数值；参数定义及原测量日期在当前资料中待核。</p>
+            </div>
+            <div class="state-tabs" role="tablist" aria-label="行为状态">
+              <button type="button" role="tab" aria-selected="true" data-state="Awake">Awake</button>
+              <button type="button" role="tab" aria-selected="false" data-state="Blink">Blink</button>
+              <button type="button" role="tab" aria-selected="false" data-state="Sleep">Sleep</button>
+              <button type="button" role="tab" aria-selected="false" data-state="Greet">Greet</button>
+            </div>
+          </div>
+          <div class="parameter-grid" id="parameter-grid" role="tabpanel" aria-live="polite">
+            <p>正在读取可追溯参数…</p>
+          </div>
+          <p class="data-source" id="parameter-source">来源：term2RC2_TEAM 1_final pre_2026.3.24.pdf · p22</p>
+        </div>
+      </section>
+
+      <section class="project-section" id="iteration" data-chapter="iteration">
+        <header class="section-heading reveal-block">
+          <p class="chapter-no">04 / Iteration &amp; decisions</p>
+          <h2>网格壳体是一条被验证的迭代分支，不是最终作品集主体的替身。</h2>
+          <p class="translation" lang="en">The gridshell was a tested iteration and exhibition branch—not a substitute for the final portfolio structure.</p>
+        </header>
+        <div class="iteration-grid">
+          <figure class="iteration-diagram reveal-media">
+            <img src="sample-assets/a05_t2final_p018.png" alt="从三支腿向四支腿发展以及网格壳体菱形变形逻辑的项目页" />
+            <figcaption>T2 p18：网格壳体变形与3支腿至4支腿发展逻辑</figcaption>
+          </figure>
+          <article class="decision-notes reveal-block">
+            <ol>
+              <li><span>材料逻辑</span><strong>方格在剪切后形成菱形变形</strong><p lang="en">A square grid shifts toward a diamond under shear.</p></li>
+              <li><span>构型发展</span><strong>资料记录了从3支腿到4支腿的推进</strong><p lang="en">The T2 page documents a three-to-four-leg development.</p></li>
+              <li><span>证据边界</span><strong>网壳研究分支用于毕业展示；最终弹性网布版本不在当前图片包中</strong><p lang="en">The gridshell branch was used in the degree-show context. The later elastic-mesh version is not included in this asset package.</p></li>
+            </ol>
+          </article>
+        </div>
+      </section>
+
+      <section class="project-section section-outcome" id="outcome" data-chapter="outcome">
+        <header class="section-heading reveal-block">
+          <p class="chapter-no">05 / Outcome, exhibition &amp; extension</p>
+          <h2>从物理原型到可追溯的设计判断。</h2>
+          <p class="translation" lang="en">From physical prototypes to traceable design decisions.</p>
+        </header>
+
+        <div class="outcome-grid">
+          <figure class="outcome-evidence reveal-media">
+            <img src="sample-assets/a07_t2final_p027.png" alt="竹构与网格壳体原型项目页" />
+            <figcaption>
+              <strong>当前包内最接近展览原型的可见证据</strong>
+              <span>竹构与网格壳体原型项目页；不冒充最终弹性网布成品或独立展览照片。</span>
+              <span lang="en">The closest visible evidence of the exhibition prototype in this package; not presented as the later elastic-mesh outcome or as a standalone exhibition photograph.</span>
+            </figcaption>
+          </figure>
+          <div class="evidence-status reveal-block">
+            <article>
+              <p class="status-label is-present">已有 / Present</p>
+              <h3>过程、原型与界面证据</h3>
+              <p>8份有来源页码的项目页、4类状态、56条几何记录，以及材料与构型取舍。</p>
+              <p lang="en">Eight sourced project pages, four behaviour states, 56 geometry records, and documented material/configuration decisions.</p>
+            </article>
+            <article>
+              <p class="status-label is-needed">待补 / Needed</p>
+              <h3>最终成果与展览原始媒体</h3>
+              <p>当前项目文件夹没有最终弹性网布成品、独立展览照片或1024视频；页面因此保留诚实回退。</p>
+              <p lang="en">The folder currently has no original images of the final elastic-mesh outcome, standalone exhibition photography, or the “1024” video.</p>
+            </article>
+          </div>
+        </div>
+
+        <section class="workbench-extension reveal-block" aria-labelledby="workbench-title">
+          <div class="extension-intro">
+            <p class="eyebrow">Personal extension · from 2026.10</p>
+            <h3 id="workbench-title">把项目复盘转成一个可操作的素材工作台</h3>
+            <p>BAMOR团队研究与后来的个人工具开发分开记录。工作台保留原始素材ID和来源，让筛选、AI初筛、人工取舍与备份成为连续流程。</p>
+            <p class="translation" lang="en">The UCL team research and the later personal tool are recorded separately. The workbench preserves asset IDs and sources across filtering, AI-assisted shortlisting, human decisions and backup.</p>
+          </div>
+          <ol class="workflow-preview">
+            <li><span>01</span><strong>素材目录</strong><small>Catalog by project, stage and content type</small></li>
+            <li><span>02</span><strong>用途筛选 / AI建议</strong><small>Purpose filters and real vision-model suggestions</small></li>
+            <li><span>03</span><strong>比较与人工取舍</strong><small>Compare 2–4 items and record reasons</small></li>
+            <li><span>04</span><strong>导出与备份</strong><small>CSV records and restorable JSON</small></li>
+          </ol>
+          <a class="primary-link extension-link" href="/">进入BAMOR Design Studio <span>Open the workbench ↗</span></a>
+        </section>
+      </section>
+    </main>
+
+    <footer class="project-footer">
+      <p>BAMOR · UCL团队研究 2025—2026<br /><span lang="en">UCL team research, 2025—2026</span></p>
+      <p>BAMOR Design Studio · 个人延伸自2026.10<br /><span lang="en">Personal tool extension from October 2026</span></p>
+      <a href="#top">回到顶部 / Back to top ↑</a>
+    </footer>
+
+    <script type="module" src="src/project.js"></script>
+  </body>
+</html>

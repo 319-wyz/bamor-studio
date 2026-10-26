@@ -1,0 +1,13 @@
+﻿status,participant_slot,task_id,method,execution_order,input_batch,start_time,end_time,active_seconds,completed,wrong_version,missing_files,wrong_name,source_missing,notes
+planned,P01,find_and_compare,manual,1,same_batch_for_both_methods,,,,,,,,,测试占位，非已完成用户记录；开始前明确输入与质量标准
+planned,P01,find_and_compare,tool,2,same_batch_for_both_methods,,,,,,,,,测试占位，非已完成用户记录；开始前明确输入与质量标准
+planned,P01,export_three_ratios,tool,1,same_batch_for_both_methods,,,,,,,,,测试占位，非已完成用户记录；开始前明确输入与质量标准
+planned,P01,export_three_ratios,manual,2,same_batch_for_both_methods,,,,,,,,,测试占位，非已完成用户记录；开始前明确输入与质量标准
+planned,P02,find_and_compare,tool,1,same_batch_for_both_methods,,,,,,,,,测试占位，非已完成用户记录；开始前明确输入与质量标准
+planned,P02,find_and_compare,manual,2,same_batch_for_both_methods,,,,,,,,,测试占位，非已完成用户记录；开始前明确输入与质量标准
+planned,P02,export_three_ratios,manual,1,same_batch_for_both_methods,,,,,,,,,测试占位，非已完成用户记录；开始前明确输入与质量标准
+planned,P02,export_three_ratios,tool,2,same_batch_for_both_methods,,,,,,,,,测试占位，非已完成用户记录；开始前明确输入与质量标准
+planned,P03,find_and_compare,manual,1,same_batch_for_both_methods,,,,,,,,,测试占位，非已完成用户记录；开始前明确输入与质量标准
+planned,P03,find_and_compare,tool,2,same_batch_for_both_methods,,,,,,,,,测试占位，非已完成用户记录；开始前明确输入与质量标准
+planned,P03,export_three_ratios,tool,1,same_batch_for_both_methods,,,,,,,,,测试占位，非已完成用户记录；开始前明确输入与质量标准
+planned,P03,export_three_ratios,manual,2,same_batch_for_both_methods,,,,,,,,,测试占位，非已完成用户记录；开始前明确输入与质量标准
